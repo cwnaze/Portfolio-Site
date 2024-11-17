@@ -3,16 +3,15 @@
     let innerHeight = $state(0);
     let scrollY = 0;
     let aboutMeOffset = $state(1);
-    let bull1Offset = $state(12.5);
-    let softwareOffset = $state(17);
-    let bull2Offset = $state(37);
-    let cyberOffset = $state(39);
+    let bull1Offset = $state(8);
+    let softwareOffset = $state(10);
+    let bull2Offset = $state(23);
+    let cyberOffset = $state(25);
 
     const updateDimensions = () => {
         if (typeof window !== 'undefined') {
             innerWidth = window.innerWidth/2 - 325;
             innerHeight = window.innerHeight/2;
-            console.log(window.innerHeight)
         }
     };
 
@@ -21,11 +20,13 @@
         scrollY = window.scrollY;
         if(scrollY != 0) {
             if(aboutMeOffset == 1 && scrollY/Math.abs(scrollY) == -1) return
+            if(cyberOffset == 90 && scrollY/Math.abs(scrollY) == 1) return
             aboutMeOffset = aboutMeOffset + (5 * (scrollY/Math.abs(scrollY)));
             bull1Offset = bull1Offset + (5 * (scrollY/Math.abs(scrollY)));
             softwareOffset = softwareOffset + (5 * (scrollY/Math.abs(scrollY)));
             bull2Offset = bull2Offset + (5 * (scrollY/Math.abs(scrollY)));
             cyberOffset = cyberOffset + (5 * (scrollY/Math.abs(scrollY)));
+            console.log(cyberOffset);
         }
         
     }
@@ -39,7 +40,12 @@
 </script>
     <div class='flex items-center justify-center h-screen'>
         <svg class='absolute w-screen h-screen'>
-            <path id='curve' d='M{innerWidth},{innerHeight} a1,1 0 0,0 650,0 a600,500 0 0,1 650,-449' fill='none' stroke='black'/>
+            <path id='curve' d='M{innerWidth},{innerHeight} 
+        a1,1 0 0,0 650,0
+        a325,325 1 0,0 -325,-325
+        a325,325 0 0,0 -253,120.5
+        a100,100 0 0,1 0,-200 
+        H{innerWidth*2+650}' fill='none' stroke='none'/>
             <text>
                 <textPath xlink:href='#curve' startOffset='{aboutMeOffset}%' dominant-baseline='hanging' class='text-4xl font-semibold stroke-blue-100 fill-blue-100 tracking-wider'>
                     About Me
