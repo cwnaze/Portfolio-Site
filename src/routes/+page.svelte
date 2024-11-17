@@ -8,6 +8,9 @@
     let bull2Offset = $state(23);
     let cyberOffset = $state(25);
 
+    let bull1: HTMLElement;
+    let bull2: HTMLElement;
+
     const updateDimensions = () => {
         if (typeof window !== 'undefined') {
             innerWidth = window.innerWidth/2 - 325;
@@ -20,12 +23,21 @@
         scrollY = window.scrollY;
         if(scrollY != 0) {
             if(aboutMeOffset == 1 && scrollY/Math.abs(scrollY) == -1) return
-            if(cyberOffset == 90 && scrollY/Math.abs(scrollY) == 1) return
-            aboutMeOffset = aboutMeOffset + (5 * (scrollY/Math.abs(scrollY)));
+            if(cyberOffset == 90 && scrollY/Math.abs(scrollY) == 1) {
+                aboutMeOffset
+                bull1.style.display = 'none';
+                bull2.style.display = 'none';
+                softwareOffset = 77;
+                aboutMeOffset = 70;
+                return
+            }
+            bull1.style.display = 'block';
+            bull2.style.display = 'block';
             bull1Offset = bull1Offset + (5 * (scrollY/Math.abs(scrollY)));
-            softwareOffset = softwareOffset + (5 * (scrollY/Math.abs(scrollY)));
             bull2Offset = bull2Offset + (5 * (scrollY/Math.abs(scrollY)));
             cyberOffset = cyberOffset + (5 * (scrollY/Math.abs(scrollY)));
+            softwareOffset = cyberOffset - 15;
+            aboutMeOffset = softwareOffset - 9;
             console.log(cyberOffset);
         }
         
@@ -50,13 +62,13 @@
                 <textPath xlink:href='#curve' startOffset='{aboutMeOffset}%' dominant-baseline='hanging' class='text-4xl font-semibold stroke-blue-100 fill-blue-100 tracking-wider'>
                     About Me
                 </textPath>
-                <textPath xlink:href='#curve' startOffset='{bull1Offset}%' dominant-baseline='hanging' class='text-5xl font-black stroke-green-100 fill-green-100'>
+                <textPath bind:this={bull1} xlink:href='#curve' startOffset='{bull1Offset}%' dominant-baseline='hanging' class='text-5xl font-black stroke-green-100 fill-green-100'>
                     &bull;
                 </textPath>
                 <textPath xlink:href='#curve' startOffset='{softwareOffset}%' dominant-baseline='hanging' class='text-4xl font-semibold stroke-blue-100 fill-blue-100 tracking-wider'>
                     Software Developer
                 </textPath>
-                <textPath xlink:href='#curve' startOffset='{bull2Offset}%' dominant-baseline='hanging' class='text-5xl font-black stroke-green-100 fill-green-100'>
+                <textPath bind:this={bull2} xlink:href='#curve' startOffset='{bull2Offset}%' dominant-baseline='hanging' class='text-5xl font-black stroke-green-100 fill-green-100'>
                     &bull;
                 </textPath>
                 <textPath xlink:href='#curve' startOffset='{cyberOffset}%' dominant-baseline='hanging' class='text-4xl font-semibold stroke-blue-100 fill-blue-100 tracking-wider'>
