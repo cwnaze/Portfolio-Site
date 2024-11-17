@@ -8,8 +8,8 @@
     let bull2Offset = $state(23);
     let cyberOffset = $state(25);
 
-    let bull1: HTMLElement;
-    let bull2: HTMLElement;
+    let bull1: SVGTextPathElement;
+    let bull2: SVGTextPathElement;
 
     const updateDimensions = () => {
         if (typeof window !== 'undefined') {
@@ -23,19 +23,19 @@
         scrollY = window.scrollY;
         if(scrollY != 0) {
             if(aboutMeOffset == 1 && scrollY/Math.abs(scrollY) == -1) return
-            if(cyberOffset == 90 && scrollY/Math.abs(scrollY) == 1) {
+            if(cyberOffset == 91 && scrollY/Math.abs(scrollY) == 1) {
                 aboutMeOffset
                 bull1.style.display = 'none';
                 bull2.style.display = 'none';
-                softwareOffset = 77;
-                aboutMeOffset = 70;
+                softwareOffset = 78;
+                aboutMeOffset = 71;
                 return
             }
             bull1.style.display = 'block';
             bull2.style.display = 'block';
-            bull1Offset = bull1Offset + (5 * (scrollY/Math.abs(scrollY)));
-            bull2Offset = bull2Offset + (5 * (scrollY/Math.abs(scrollY)));
-            cyberOffset = cyberOffset + (5 * (scrollY/Math.abs(scrollY)));
+            bull1Offset = bull1Offset + (3 * (scrollY/Math.abs(scrollY)));
+            bull2Offset = bull2Offset + (3 * (scrollY/Math.abs(scrollY)));
+            cyberOffset = cyberOffset + (3 * (scrollY/Math.abs(scrollY)));
             softwareOffset = cyberOffset - 15;
             aboutMeOffset = softwareOffset - 9;
             console.log(cyberOffset);
