@@ -138,12 +138,14 @@
     if (typeof window !== 'undefined') {
         updateDimensions();
         window.addEventListener('resize', updateDimensions);
-        window.addEventListener('wheel', handleHeroScroll, {passive: false});
-        window.addEventListener('touchmove', handleHeroScroll, {passive: false});
+        if(window.innerWidth >= 768) {
+            window.addEventListener('wheel', handleHeroScroll, {passive: false});
+            window.addEventListener('touchmove', handleHeroScroll, {passive: false});
+        }
         if(!heroAnimComplete) document.body.style.overflow = 'hidden';
     }
 </script>
-    <div bind:this={hero} class='h-screen'>
+    <div bind:this={hero} class='h-screen hidden opacity-0 md:block'>
         <svg class='absolute w-screen h-screen'>
             <path id='curve' d='M{innerWidth},{innerHeight} 
         a1,1 0 0,0 650,0
@@ -170,6 +172,9 @@
             </text>
         </svg>
         <img bind:this={logo} width='600' height='600' style='position:absolute; right:{innerWidth+25}px; top:{innerHeight - 300}px' src='/images/logo.svg' alt='Casey Nazelrod Logo'>
+    </div>
+    <div class='flex h-screen justify-center align-center md:hidden'>
+        <img src='/images/logo.svg' alt='Casey Nazelrod Logo' class='w-1/2'/>
     </div>
     
     <div bind:this={navbar} class='hidden opacity-0'><Navbar/>
