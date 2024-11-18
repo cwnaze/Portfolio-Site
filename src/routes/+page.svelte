@@ -10,8 +10,10 @@
     let bull1: SVGTextPathElement;
     let bull2: SVGTextPathElement;
     let logo: HTMLImageElement;
-    let navbar: HTMLElement;
     let heroAnimComplete: boolean = false;
+
+    let navbar: HTMLElement;
+    let comingSoon: HTMLElement;
 
     const updateDimensions = () => {
         if (typeof window !== 'undefined') {
@@ -70,17 +72,24 @@
                     attr: {width: 50, top: '0px', left: '0px'}
                 })
                 tl.to(hero, {
-                    duration: 0.2,
+                    duration: 0.1,
                     opacity: 0,
                     ease: "power2.out",
                     onComplete: () => {
                         hero.style.display = 'none';
-                        gsap.to(navbar, {
-                            duration: 0.2,
+                        tl.to(navbar, {
+                            duration: 0.1,
                             display: 'block',
                             opacity: 1,
                             ease: "power2.in"
                         })
+                        tl.to(comingSoon, {
+                            delay: 0.1,
+                            duration: 0.2,
+                            display: 'block',
+                            opacity: 1,
+                            ease: "power2.in"
+                    })
                     }
                 })
                 logo.style.top = '0px'
@@ -163,8 +172,8 @@
         <img bind:this={logo} width='600' height='600' style='position:absolute; right:{innerWidth+25}px; top:{innerHeight - 300}px' src='/images/logo.svg' alt='Casey Nazelrod Logo'>
     </div>
     
-    <div bind:this={navbar} class='hidden'><Navbar/>
-        <h1 class='text-9xl text-center text-blue-100 mt-5 font-black'>Coming Soon</h1>
+    <div bind:this={navbar} class='hidden opacity-0'><Navbar/>
+        <h1 bind:this={comingSoon} class='text-9xl text-center text-blue-100 mt-5 font-black hidden opacity-0'>Coming Soon</h1>
     </div>
 
   
