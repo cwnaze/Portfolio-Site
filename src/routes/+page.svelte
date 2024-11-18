@@ -145,7 +145,7 @@
         if(!heroAnimComplete) document.body.style.overflow = 'hidden';
     }
 </script>
-    <div bind:this={hero} class='h-screen hidden opacity-0 md:block'>
+    <div bind:this={hero} class='h-screen hidden md:block'>
         <svg class='absolute w-screen h-screen'>
             <path id='curve' d='M{innerWidth},{innerHeight} 
         a1,1 0 0,0 650,0
