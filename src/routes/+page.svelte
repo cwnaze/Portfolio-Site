@@ -12,6 +12,8 @@
     let logo: HTMLImageElement;
     let heroAnimComplete: boolean = false;
 
+    let path: SVGPathElement;
+
     let navbar: HTMLElement;
     let comingSoon: HTMLElement;
 
@@ -25,47 +27,36 @@
     function handleHeroScroll(event: Event) {
         event.preventDefault();
         const { deltaY } = event as WheelEvent;
-        console.log(aboutMe.startOffset.baseVal.valueInSpecifiedUnits)
+        const cyberPercent = cyber.startOffset.baseVal.valueInSpecifiedUnits/path.getTotalLength()*100;
+        console.log(cyber.startOffset.baseVal.valueInSpecifiedUnits/path.getTotalLength()*100)
         if(deltaY != 0) {
-            console.log(aboutMe.startOffset.baseVal.valueInSpecifiedUnits)
-            if(aboutMe.startOffset.baseVal.valueInSpecifiedUnits <= 1 && deltaY/Math.abs(deltaY) == -1) {
+            if(aboutMe.startOffset.baseVal.valueInSpecifiedUnits <= 50 && deltaY/Math.abs(deltaY) == -1) {
                 gsap.to(aboutMe, {
                     duration: 0.1,
-                    attr: {startOffset: '1%'}
+                    attr: {startOffset: '50'}
                 })
                 gsap.to(bull1, {
                     duration: 0.1,
-                    attr: {startOffset: '8%'}
+                    attr: {startOffset: '275'}
                 })
                 gsap.to(software, {
                     duration: 0.1,
-                    attr: {startOffset: '10%'}
+                    attr: {startOffset: '340'}
                 })
                 gsap.to(bull2, {
                     duration: 0.1,
-                    attr: {startOffset: '23%'}
+                    attr: {startOffset: '750'}
                 })
                 gsap.to(cyber, {
                     duration: 0.1,
-                    attr: {startOffset: '25%'}
+                    attr: {startOffset: '800'}
                 })
                 return
             }
-            if(cyber.startOffset.baseVal.valueInSpecifiedUnits >= 91 && deltaY/Math.abs(deltaY) == 1) {
+            if(cyberPercent >= 91 && deltaY/Math.abs(deltaY) == 1) {
+                heroAnimComplete = true;
                 bull1.style.display = 'none';
                 bull2.style.display = 'none';
-                gsap.to(cyber, {
-                    duration: 0.1,
-                    attr: {startOffset: '91%'}
-                })
-                gsap.to(software, {
-                    duration: 0.1,
-                    attr: {startOffset: '78%'}
-                })
-                gsap.to(aboutMe, {
-                    duration: 0.1,
-                    attr: {startOffset: '71%'}
-                })
                 var tl = gsap.timeline();
                 tl.to(logo, {
                     duration: 0.3,
@@ -94,7 +85,6 @@
                 })
                 logo.style.top = '0px'
                 logo.style.left = '0px'
-                heroAnimComplete = true;
                 document.body.style.overflow = 'visible';
                 window.removeEventListener('wheel', handleHeroScroll);
                 window.removeEventListener('touchmove', handleHeroScroll);
@@ -113,23 +103,23 @@
             bull2.style.display = 'block';
             gsap.to(bull1, {
                 duration: 0.1,
-                attr: {startOffset: `${bull1.startOffset.baseVal.valueInSpecifiedUnits + (3 * (deltaY/Math.abs(deltaY)))}%`}
+                attr: {startOffset: `${bull1.startOffset.baseVal.valueInSpecifiedUnits + (75 * (deltaY/Math.abs(deltaY)))}`}
             })
             gsap.to(bull2, {
                 duration: 0.1,
-                attr: {startOffset: `${bull2.startOffset.baseVal.valueInSpecifiedUnits + (3 * (deltaY/Math.abs(deltaY)))}%`}
+                attr: {startOffset: `${bull2.startOffset.baseVal.valueInSpecifiedUnits + (75 * (deltaY/Math.abs(deltaY)))}`}
             })
             gsap.to(cyber, {
                 duration: 0.1,
-                attr: {startOffset: `${cyber.startOffset.baseVal.valueInSpecifiedUnits + (3 * (deltaY/Math.abs(deltaY)))}%`}
+                attr: {startOffset: `${cyber.startOffset.baseVal.valueInSpecifiedUnits + (75 * (deltaY/Math.abs(deltaY)))}`}
             })
             gsap.to(software, {
                 duration: 0.1,
-                attr: {startOffset: `${software.startOffset.baseVal.valueInSpecifiedUnits + (3 * (deltaY/Math.abs(deltaY)))}%`}
+                attr: {startOffset: `${software.startOffset.baseVal.valueInSpecifiedUnits + (75 * (deltaY/Math.abs(deltaY)))}`}
             })
             gsap.to(aboutMe, {
                 duration: 0.1,
-                attr: {startOffset: `${aboutMe.startOffset.baseVal.valueInSpecifiedUnits + (3 * (deltaY/Math.abs(deltaY)))}%`}
+                attr: {startOffset: `${aboutMe.startOffset.baseVal.valueInSpecifiedUnits + (75 * (deltaY/Math.abs(deltaY)))}`}
             })
         }    
     }
@@ -147,26 +137,26 @@
 </script>
     <div bind:this={hero} class='h-screen hidden md:block'>
         <svg class='absolute w-screen h-screen'>
-            <path id='curve' d='M{innerWidth},{innerHeight} 
+            <path bind:this={path} id='curve' d='M{innerWidth},{innerHeight} 
         a1,1 0 0,0 650,0
         a325,325 1 0,0 -325,-325
         a325,325 0 0,0 -253,125.5
-        a100,100 0 0,1 0,-{innerHeight - 210}
+        a100,100 0 0,1 0,-{innerHeight - 225}
         H{innerWidth*2+650}' fill='none' stroke='none'/>
             <text>
-                <textPath bind:this={aboutMe} xlink:href='#curve' startOffset='1%' dominant-baseline='hanging' class='text-4xl font-semibold stroke-blue-100 fill-blue-100 tracking-wider'>
+                <textPath bind:this={aboutMe} xlink:href='#curve' startOffset='50' dominant-baseline='hanging' class='text-4xl font-semibold stroke-blue-100 fill-blue-100 tracking-wider'>
                     About Me
                 </textPath>
-                <textPath bind:this={bull1} xlink:href='#curve' startOffset='8%' dominant-baseline='hanging' class='text-5xl font-black stroke-green-100 fill-green-100'>
+                <textPath bind:this={bull1} xlink:href='#curve' startOffset='275' dominant-baseline='hanging' class='text-5xl font-black stroke-green-100 fill-green-100'>
                     &bull;
                 </textPath>
-                <textPath bind:this={software} xlink:href='#curve' startOffset='10%' dominant-baseline='hanging' class='text-4xl font-semibold stroke-blue-100 fill-blue-100 tracking-wider'>
+                <textPath bind:this={software} xlink:href='#curve' startOffset='340' dominant-baseline='hanging' class='text-4xl font-semibold stroke-blue-100 fill-blue-100 tracking-wider'>
                     Software Developer
                 </textPath>
-                <textPath bind:this={bull2} xlink:href='#curve' startOffset='23%' dominant-baseline='hanging' class='text-5xl font-black stroke-green-100 fill-green-100'>
+                <textPath bind:this={bull2} xlink:href='#curve' startOffset='750' dominant-baseline='hanging' class='text-5xl font-black stroke-green-100 fill-green-100'>
                     &bull;
                 </textPath>
-                <textPath bind:this={cyber} xlink:href='#curve' startOffset='25%' dominant-baseline='hanging' class='text-4xl font-semibold stroke-blue-100 fill-blue-100 tracking-wider'>
+                <textPath bind:this={cyber} xlink:href='#curve' startOffset='800' dominant-baseline='hanging' class='text-4xl font-semibold stroke-blue-100 fill-blue-100 tracking-wider'>
                     Cybersecurity
                 </textPath>
             </text>
