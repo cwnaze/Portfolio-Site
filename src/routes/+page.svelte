@@ -13,7 +13,7 @@
     let heroAnimComplete: boolean = false;
 
     let navbar: HTMLElement;
-    let comingSoon: HTMLElement;
+    let aboutMeSection: HTMLElement;
 
     const updateDimensions = () => {
         if (typeof window !== 'undefined') {
@@ -83,7 +83,7 @@
                             opacity: 1,
                             ease: "power2.in"
                         })
-                        tl.to(comingSoon, {
+                        tl.to(aboutMeSection, {
                             delay: 0.1,
                             duration: 0.2,
                             display: 'block',
@@ -178,7 +178,9 @@
     </div>
     
     <div bind:this={navbar} class='hidden opacity-0'><Navbar/>
-        <h1 bind:this={comingSoon} class='text-9xl text-center text-blue-100 mt-5 font-black hidden opacity-0'>Coming Soon</h1>
+        <h1 bind:this={aboutMeSection} id='about-me' class='text-4xl text-blue-100 mt-5 ml-5 w-fit font-black hidden opacity-0 border-b-red-100 border-b-4'>
+            About Me
+        </h1>
     </div>
 
   
