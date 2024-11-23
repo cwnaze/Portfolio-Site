@@ -178,7 +178,7 @@
     </div>
     
     <div bind:this={navbar} class='hidden opacity-0'><Navbar/>
-        <h1 bind:this={aboutMeSection} id='about-me' class='text-4xl text-blue-100 mt-5 ml-5 w-fit font-black hidden opacity-0 border-b-red-100 border-b-4'>
+        <h1 bind:this={aboutMeSection} id='about-me' class='text-5xl text-blue-100 mt-5 ml-5 w-fit font-black hidden opacity-0 border-b-red-100 border-b-4'>
             About Me
         </h1>
     </div>

@@ -24,7 +24,7 @@ export default {
 			},
 		},
 		fontFamily: {
-			sans: ['Quicksand', 'sans-serif']
+			sans: ['Poppins', 'sans-serif']
 		  },
 		extend: {}
 	},
